@@ -5,15 +5,14 @@
 import {inject, bindable, customAttribute} from 'aurelia-framework';
 
 @customAttribute('drop')
-@inject(Element, PostBox)
+@inject(Element)
 export class Drop {
 
   @bindable handler;
   @bindable params = {};
 
-  constructor(element, postBox) {
+  constructor(element) {
     this.element = element;
-    this.pb = postBox;
   }
 
   bind(bindingContext, overrideContext) {

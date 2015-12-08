@@ -30,7 +30,7 @@ var Drop = (function () {
     enumerable: true
   }], null, _instanceInitializers);
 
-  function Drop(element, postBox) {
+  function Drop(element) {
     _classCallCheck(this, _Drop);
 
     _defineDecoratedPropertyDescriptor(this, 'handler', _instanceInitializers);
@@ -38,7 +38,6 @@ var Drop = (function () {
     _defineDecoratedPropertyDescriptor(this, 'params', _instanceInitializers);
 
     this.element = element;
-    this.pb = postBox;
   }
 
   _createDecoratedClass(Drop, [{
@@ -79,7 +78,7 @@ var Drop = (function () {
   }], null, _instanceInitializers);
 
   var _Drop = Drop;
-  Drop = (0, _aureliaFramework.inject)(Element, PostBox)(Drop) || Drop;
+  Drop = (0, _aureliaFramework.inject)(Element)(Drop) || Drop;
   Drop = (0, _aureliaFramework.customAttribute)('drop')(Drop) || Drop;
   return Drop;
 })();

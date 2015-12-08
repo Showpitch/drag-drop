@@ -34,7 +34,7 @@ System.register(['aurelia-framework'], function (_export) {
           enumerable: true
         }], null, _instanceInitializers);
 
-        function Drop(element, postBox) {
+        function Drop(element) {
           _classCallCheck(this, _Drop);
 
           _defineDecoratedPropertyDescriptor(this, 'handler', _instanceInitializers);
@@ -42,7 +42,6 @@ System.register(['aurelia-framework'], function (_export) {
           _defineDecoratedPropertyDescriptor(this, 'params', _instanceInitializers);
 
           this.element = element;
-          this.pb = postBox;
         }
 
         _createDecoratedClass(Drop, [{
@@ -83,7 +82,7 @@ System.register(['aurelia-framework'], function (_export) {
         }], null, _instanceInitializers);
 
         var _Drop = Drop;
-        Drop = inject(Element, PostBox)(Drop) || Drop;
+        Drop = inject(Element)(Drop) || Drop;
         Drop = customAttribute('drop')(Drop) || Drop;
         return Drop;
       })();
