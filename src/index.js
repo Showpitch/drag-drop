@@ -1,4 +1,6 @@
 export function configure(config) {
-  config.globalResources('./drag');
-  config.globalResources('./drop');
+  config.globalResources(
+    './drag',
+    './drop'
+  );
 }

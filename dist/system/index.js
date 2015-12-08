@@ -4,8 +4,7 @@ System.register([], function (_export) {
   _export('configure', configure);
 
   function configure(config) {
-    config.globalResources('./drag');
-    config.globalResources('./drop');
+    config.globalResources('./drag', './drop');
   }
 
   return {

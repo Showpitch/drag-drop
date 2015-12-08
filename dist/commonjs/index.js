@@ -6,6 +6,5 @@ Object.defineProperty(exports, '__esModule', {
 exports.configure = configure;
 
 function configure(config) {
-  config.globalResources('./drag');
-  config.globalResources('./drop');
+  config.globalResources('./drag', './drop');
 }

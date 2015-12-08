@@ -2,62 +2,64 @@
  * Created by ericjohnson on 12/7/15.
  */
 
-import {inject, bindable, customAttribute} from 'aurelia-framework'
+import {inject, bindable, customAttribute} from 'aurelia-framework';
 
 @customAttribute('drag')
 @inject(Element)
 export class Drag {
 
-    @bindable type = {};
-    @bindable model = {};
+  @bindable type = {};
+  @bindable model = {};
 
-    constructor(element) {
-        this.element = element;
+  constructor(element) {
+    let i;
 
-        // set element to draggable
-        this.element.draggable = true;
+    this.element = element;
 
-        // set inner element dragability to false so that only the drag elements gets pulled over
-        for (var i = 0; i < this.element.children.length; i++) {
-            this.element.children[i].draggable = false;
-        }
+    // set element to draggable
+    this.element.draggable = true;
+
+    // set inner element dragability to false so that only the drag elements gets pulled over
+    for (i = 0; i < this.element.children.length; i++) {
+      this.element.children[i].draggable = false;
     }
+  }
 
-    dragstartHandler(e) {
-        $(this.element).addClass('dragging');
-        $('body').addClass(`${this.type}-dragging`);
-        e.dataTransfer.setData("object", JSON.stringify({type: this.type, model: this.model}));
-    }
+  dragstartHandler(e) {
+    $(this.element).addClass('dragging');
+    $('body').addClass(`${this.type}-dragging`);
+    e.dataTransfer.setData('object', JSON.stringify({type: this.type, model: this.model}));
+  }
 
-    dragHandler() {
-        // nothing needed currently
-    }
+  dragHandler() {
+    // nothing needed currently
+  }
 
-    dragendHandler() {
-        $(this.element).removeClass('dragging');
-        $('body').removeClass(`${this.type}-dragging`);
-    }
+  dragendHandler() {
+    $(this.element).removeClass('dragging');
+    $('body').removeClass(`${this.type}-dragging`);
+  }
 
-    bind() {
-        this.element.addEventListener('dragstart', (e) => {
-            this.dragstartHandler(e);
-        });
+  bind() {
+    this.element.addEventListener('dragstart', (e) => {
+      this.dragstartHandler(e);
+    });
 
-        this.element.addEventListener('drag', () => {
-            this.dragHandler();
-        });
+    this.element.addEventListener('drag', () => {
+      this.dragHandler();
+    });
 
-        this.element.addEventListener('dragend', () => {
-            this.dragendHandler();
-        })
-    }
+    this.element.addEventListener('dragend', () => {
+      this.dragendHandler();
+    });
+  }
 
-    unbind() {
-        // remove listeners
-        this.element.removeEventListener('dragstart');
-        this.element.removeEventListener('drag');
-        this.element.removeEventListener('dragend');
-    }
+  unbind() {
+    // remove listeners
+    this.element.removeEventListener('dragstart');
+    this.element.removeEventListener('drag');
+    this.element.removeEventListener('dragend');
+  }
 
 
 }

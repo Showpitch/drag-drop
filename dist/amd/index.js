@@ -7,7 +7,6 @@ define(['exports'], function (exports) {
   exports.configure = configure;
 
   function configure(config) {
-    config.globalResources('./drag');
-    config.globalResources('./drop');
+    config.globalResources('./drag', './drop');
   }
 });
