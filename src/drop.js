@@ -40,7 +40,7 @@ export class Drop {
 
       // then handle
       $(this.element).removeClass('drag-over');
-      let data = JSON.parse(e.dataTransfer.getData('object'));
+      let data = JSON.parse(e.dataTransfer.getData('data'));
       this.context[this.handler](data, e, this.params);
     });
   }
