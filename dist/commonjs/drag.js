@@ -46,7 +46,7 @@ var Drag = (function () {
     value: function dragstartHandler(e) {
       $(this.element).addClass('dragging');
       $('body').addClass(this.type + '-dragging');
-      e.dataTransfer.setData('data', JSON.stringify(data));
+      e.dataTransfer.setData('data', JSON.stringify(this.data));
     }
   }, {
     key: 'dragHandler',
