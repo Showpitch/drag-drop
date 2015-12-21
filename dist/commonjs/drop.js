@@ -63,7 +63,7 @@ var Drop = (function () {
         e.preventDefault();
 
         $(_this.element).removeClass('drag-over');
-        var data = JSON.parse(e.dataTransfer.getData('object'));
+        var data = JSON.parse(e.dataTransfer.getData('data'));
         _this.context[_this.handler](data, e, _this.params);
       });
     }

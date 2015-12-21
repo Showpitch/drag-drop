@@ -16,14 +16,7 @@ define(['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
     var _instanceInitializers = {};
 
     _createDecoratedClass(Drag, [{
-      key: 'type',
-      decorators: [_aureliaFramework.bindable],
-      initializer: function initializer() {
-        return {};
-      },
-      enumerable: true
-    }, {
-      key: 'model',
+      key: 'data',
       decorators: [_aureliaFramework.bindable],
       initializer: function initializer() {
         return {};
@@ -34,9 +27,7 @@ define(['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
     function Drag(element) {
       _classCallCheck(this, _Drag);
 
-      _defineDecoratedPropertyDescriptor(this, 'type', _instanceInitializers);
-
-      _defineDecoratedPropertyDescriptor(this, 'model', _instanceInitializers);
+      _defineDecoratedPropertyDescriptor(this, 'data', _instanceInitializers);
 
       var i = undefined;
 
@@ -54,7 +45,7 @@ define(['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
       value: function dragstartHandler(e) {
         $(this.element).addClass('dragging');
         $('body').addClass(this.type + '-dragging');
-        e.dataTransfer.setData('object', JSON.stringify({ type: this.type, model: this.model }));
+        e.dataTransfer.setData('data', JSON.stringify(data));
       }
     }, {
       key: 'dragHandler',

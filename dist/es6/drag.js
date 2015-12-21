@@ -8,8 +8,7 @@ import {inject, bindable, customAttribute} from 'aurelia-framework';
 @inject(Element)
 export class Drag {
 
-  @bindable type = {};
-  @bindable model = {};
+  @bindable data = {};
 
   constructor(element) {
     let i;
@@ -28,7 +27,7 @@ export class Drag {
   dragstartHandler(e) {
     $(this.element).addClass('dragging');
     $('body').addClass(`${this.type}-dragging`);
-    e.dataTransfer.setData('object', JSON.stringify({type: this.type, model: this.model}));
+    e.dataTransfer.setData('data', JSON.stringify(data));
   }
 
   dragHandler() {
