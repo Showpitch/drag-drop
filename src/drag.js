@@ -3,17 +3,21 @@
  */
 
 import {inject, bindable, customAttribute} from 'aurelia-framework';
+import {PostBox} from 'aurelia-postbox';
 
 @customAttribute('drag')
-@inject(Element)
+@inject(Element, PostBox)
 export class Drag {
 
+  @bindable target = 'enable';
   @bindable data = {};
+  @bindable dropClass = {};
 
-  constructor(element) {
+  constructor(element, postBox) {
     let i;
 
     this.element = element;
+    this.pb = postBox;
 
     // set element to draggable
     this.element.draggable = true;
@@ -26,7 +30,7 @@ export class Drag {
 
   dragstartHandler(e) {
     $(this.element).addClass('dragging');
-    $('body').addClass(`${this.type}-dragging`);
+    this.pb.publish('drop-target', this.target);
     e.dataTransfer.setData('data', JSON.stringify(this.data));
   }
 
@@ -36,7 +40,7 @@ export class Drag {
 
   dragendHandler() {
     $(this.element).removeClass('dragging');
-    $('body').removeClass(`${this.type}-dragging`);
+    this.pb.publish('drop-target', null);
   }
 
   bind() {

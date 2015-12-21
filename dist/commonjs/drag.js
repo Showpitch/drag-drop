@@ -12,12 +12,28 @@ function _defineDecoratedPropertyDescriptor(target, key, descriptors) { var _des
 
 var _aureliaFramework = require('aurelia-framework');
 
+var _aureliaPostbox = require('aurelia-postbox');
+
 var Drag = (function () {
   var _instanceInitializers = {};
   var _instanceInitializers = {};
 
   _createDecoratedClass(Drag, [{
+    key: 'target',
+    decorators: [_aureliaFramework.bindable],
+    initializer: function initializer() {
+      return 'enable';
+    },
+    enumerable: true
+  }, {
     key: 'data',
+    decorators: [_aureliaFramework.bindable],
+    initializer: function initializer() {
+      return {};
+    },
+    enumerable: true
+  }, {
+    key: 'dropClass',
     decorators: [_aureliaFramework.bindable],
     initializer: function initializer() {
       return {};
@@ -25,14 +41,19 @@ var Drag = (function () {
     enumerable: true
   }], null, _instanceInitializers);
 
-  function Drag(element) {
+  function Drag(element, postBox) {
     _classCallCheck(this, _Drag);
 
+    _defineDecoratedPropertyDescriptor(this, 'target', _instanceInitializers);
+
     _defineDecoratedPropertyDescriptor(this, 'data', _instanceInitializers);
+
+    _defineDecoratedPropertyDescriptor(this, 'dropClass', _instanceInitializers);
 
     var i = undefined;
 
     this.element = element;
+    this.pb = postBox;
 
     this.element.draggable = true;
 
@@ -45,7 +66,7 @@ var Drag = (function () {
     key: 'dragstartHandler',
     value: function dragstartHandler(e) {
       $(this.element).addClass('dragging');
-      $('body').addClass(this.type + '-dragging');
+      this.pb.publish('drop-target', this.target);
       e.dataTransfer.setData('data', JSON.stringify(this.data));
     }
   }, {
@@ -55,7 +76,7 @@ var Drag = (function () {
     key: 'dragendHandler',
     value: function dragendHandler() {
       $(this.element).removeClass('dragging');
-      $('body').removeClass(this.type + '-dragging');
+      this.pb.publish('drop-target', null);
     }
   }, {
     key: 'bind',
@@ -84,7 +105,7 @@ var Drag = (function () {
   }], null, _instanceInitializers);
 
   var _Drag = Drag;
-  Drag = (0, _aureliaFramework.inject)(Element)(Drag) || Drag;
+  Drag = (0, _aureliaFramework.inject)(Element, _aureliaPostbox.PostBox)(Drag) || Drag;
   Drag = (0, _aureliaFramework.customAttribute)('drag')(Drag) || Drag;
   return Drag;
 })();

@@ -1,6 +1,6 @@
 {
   "name": "aurelia-drag-drop",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A drag and drop plugin for aurelia.",
   "keywords": [
     "aurelia",
@@ -49,7 +49,8 @@
       "lib": "dist/amd"
     },
     "dependencies": {
-      "aurelia-framework": "npm:aurelia-framework@^1.0.0-beta.1.0.3"
+      "aurelia-framework": "npm:aurelia-framework@^1.0.0-beta.1.0.3",
+      "aurelia-postbox": "github:digitzfone/aurelia-post-box@^0.0.15"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",

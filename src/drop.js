@@ -3,23 +3,22 @@
  */
 
 import {inject, bindable, customAttribute} from 'aurelia-framework';
+import {PostBox} from 'aurelia-postbox';
 
 @customAttribute('drop')
-@inject(Element)
+@inject(Element, PostBox)
 export class Drop {
 
+  @bindable target = 'enable';
   @bindable handler;
   @bindable params = {};
 
-  constructor(element) {
+  constructor(element, postBox) {
     this.element = element;
+    this.pb = postBox;
   }
 
-  bind(bindingContext, overrideContext) {
-    // set context
-    this.context = typeof(bindingContext[this.handler]) === 'function' ? bindingContext : overrideContext.parentOverrideContext.bindingContext;
-
-
+  listen() {
     // load listeners
     this.element.addEventListener('dragenter', () => {
       $(this.element).addClass('drag-over');
@@ -45,11 +44,29 @@ export class Drop {
     });
   }
 
-  unbind() {
+  stopListening() {
     // remove listeners
     this.element.removeEventListener('dragenter');
     this.element.removeEventListener('dragover');
     this.element.removeEventListener('dragleave');
     this.element.removeEventListener('drop');
+  }
+
+  bind(bindingContext, overrideContext) {
+    // set context
+    this.context = typeof(bindingContext[this.handler]) === 'function' ? bindingContext : overrideContext.parentOverrideContext.bindingContext;
+
+    // this creates a pb listener to get target type for dropping
+    this.pb.subscribe('drop-target', payload => {
+      if (payload === this.target) {
+        this.listen();
+      } else {
+        this.stopListening();
+      }
+    });
+  }
+
+  unbind() {
+    this.stopListening();
   }
 }

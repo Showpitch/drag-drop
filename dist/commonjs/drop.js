@@ -12,11 +12,20 @@ function _defineDecoratedPropertyDescriptor(target, key, descriptors) { var _des
 
 var _aureliaFramework = require('aurelia-framework');
 
+var _aureliaPostbox = require('aurelia-postbox');
+
 var Drop = (function () {
   var _instanceInitializers = {};
   var _instanceInitializers = {};
 
   _createDecoratedClass(Drop, [{
+    key: 'target',
+    decorators: [_aureliaFramework.bindable],
+    initializer: function initializer() {
+      return 'enable';
+    },
+    enumerable: true
+  }, {
     key: 'handler',
     decorators: [_aureliaFramework.bindable],
     initializer: null,
@@ -30,22 +39,23 @@ var Drop = (function () {
     enumerable: true
   }], null, _instanceInitializers);
 
-  function Drop(element) {
+  function Drop(element, postBox) {
     _classCallCheck(this, _Drop);
+
+    _defineDecoratedPropertyDescriptor(this, 'target', _instanceInitializers);
 
     _defineDecoratedPropertyDescriptor(this, 'handler', _instanceInitializers);
 
     _defineDecoratedPropertyDescriptor(this, 'params', _instanceInitializers);
 
     this.element = element;
+    this.pb = postBox;
   }
 
   _createDecoratedClass(Drop, [{
-    key: 'bind',
-    value: function bind(bindingContext, overrideContext) {
+    key: 'listen',
+    value: function listen() {
       var _this = this;
-
-      this.context = typeof bindingContext[this.handler] === 'function' ? bindingContext : overrideContext.parentOverrideContext.bindingContext;
 
       this.element.addEventListener('dragenter', function () {
         $(_this.element).addClass('drag-over');
@@ -68,17 +78,37 @@ var Drop = (function () {
       });
     }
   }, {
-    key: 'unbind',
-    value: function unbind() {
+    key: 'stopListening',
+    value: function stopListening() {
       this.element.removeEventListener('dragenter');
       this.element.removeEventListener('dragover');
       this.element.removeEventListener('dragleave');
       this.element.removeEventListener('drop');
     }
+  }, {
+    key: 'bind',
+    value: function bind(bindingContext, overrideContext) {
+      var _this2 = this;
+
+      this.context = typeof bindingContext[this.handler] === 'function' ? bindingContext : overrideContext.parentOverrideContext.bindingContext;
+
+      this.pb.subscribe('drop-target', function (payload) {
+        if (payload === _this2.target) {
+          _this2.listen();
+        } else {
+          _this2.stopListening();
+        }
+      });
+    }
+  }, {
+    key: 'unbind',
+    value: function unbind() {
+      this.stopListening();
+    }
   }], null, _instanceInitializers);
 
   var _Drop = Drop;
-  Drop = (0, _aureliaFramework.inject)(Element)(Drop) || Drop;
+  Drop = (0, _aureliaFramework.inject)(Element, _aureliaPostbox.PostBox)(Drop) || Drop;
   Drop = (0, _aureliaFramework.customAttribute)('drop')(Drop) || Drop;
   return Drop;
 })();
