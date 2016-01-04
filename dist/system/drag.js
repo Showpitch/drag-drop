@@ -72,7 +72,7 @@ System.register(['jquery', 'aurelia-framework', 'aurelia-postbox'], function (_e
             $(this.element).addClass('dragging');
             this.pb.publish('drop-target', this.target);
             $('body').addClass(this.target + '-target-dragging');
-            e.dataTransfer.setData('data', JSON.stringify(this.data));
+            e.originalEvent.dataTransfer.setData('data', JSON.stringify(this.data));
           }
         }, {
           key: 'dragHandler',
