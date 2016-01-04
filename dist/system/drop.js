@@ -1,4 +1,4 @@
-System.register(['aurelia-framework', 'aurelia-postbox'], function (_export) {
+System.register(['jquery', 'aurelia-framework', 'aurelia-postbox'], function (_export) {
   'use strict';
 
   var inject, bindable, customAttribute, PostBox, Drop;
@@ -10,7 +10,7 @@ System.register(['aurelia-framework', 'aurelia-postbox'], function (_export) {
   function _defineDecoratedPropertyDescriptor(target, key, descriptors) { var _descriptor = descriptors[key]; if (!_descriptor) return; var descriptor = {}; for (var _key in _descriptor) descriptor[_key] = _descriptor[_key]; descriptor.value = descriptor.initializer ? descriptor.initializer.call(target) : undefined; Object.defineProperty(target, key, descriptor); }
 
   return {
-    setters: [function (_aureliaFramework) {
+    setters: [function (_jquery) {}, function (_aureliaFramework) {
       inject = _aureliaFramework.inject;
       bindable = _aureliaFramework.bindable;
       customAttribute = _aureliaFramework.customAttribute;
@@ -61,33 +61,33 @@ System.register(['aurelia-framework', 'aurelia-postbox'], function (_export) {
           value: function listen() {
             var _this = this;
 
-            this.element.addEventListener('dragenter', function () {
+            $(this.element).on('dragenter.dd', function () {
               $(_this.element).addClass('drag-over');
             });
 
-            this.element.addEventListener('dragover', function (e) {
+            $(this.element).on('dragover.dd', function (e) {
               e.preventDefault();
             });
 
-            this.element.addEventListener('dragleave', function () {
+            $(this.element).on('dragleave.dd', function () {
               $(_this.element).removeClass('drag-over');
             });
 
-            this.element.addEventListener('drop', function (e) {
+            $(this.element).on('drop.dd', function (e) {
               e.preventDefault();
 
               $(_this.element).removeClass('drag-over');
-              var data = JSON.parse(e.dataTransfer.getData('data'));
+              var data = JSON.parse(e.originalEvent.dataTransfer.getData('data'));
               _this.context[_this.handler](data, e, _this.params);
             });
           }
         }, {
           key: 'stopListening',
           value: function stopListening() {
-            this.element.removeEventListener('dragenter');
-            this.element.removeEventListener('dragover');
-            this.element.removeEventListener('dragleave');
-            this.element.removeEventListener('drop');
+            $(this.element).off('dragenter.dd');
+            $(this.element).off('dragover.dd');
+            $(this.element).off('dragleave.dd');
+            $(this.element).off('drop.dd');
           }
         }, {
           key: 'bind',

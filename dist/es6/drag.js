@@ -2,6 +2,7 @@
  * Created by ericjohnson on 12/7/15.
  */
 
+import 'jquery';
 import {inject, bindable, customAttribute} from 'aurelia-framework';
 import {PostBox} from 'aurelia-postbox';
 
@@ -46,24 +47,24 @@ export class Drag {
   }
 
   bind() {
-    this.element.addEventListener('dragstart', (e) => {
+    $(this.element).on('dragstart.dd', (e) => {
       this.dragstartHandler(e);
     });
 
-    this.element.addEventListener('drag', () => {
+    $(this.element).on('drag.dd', () => {
       this.dragHandler();
     });
 
-    this.element.addEventListener('dragend', () => {
+    $(this.element).on('dragend.dd', () => {
       this.dragendHandler();
     });
   }
 
   unbind() {
     // remove listeners
-    this.element.removeEventListener('dragstart');
-    this.element.removeEventListener('drag');
-    this.element.removeEventListener('dragend');
+    $(this.element).off('dragstart.dd');
+    $(this.element).off('drag.dd');
+    $(this.element).off('dragend.dd');
   }
 
 

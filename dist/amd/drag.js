@@ -1,4 +1,4 @@
-define(['exports', 'aurelia-framework', 'aurelia-postbox'], function (exports, _aureliaFramework, _aureliaPostbox) {
+define(['exports', 'jquery', 'aurelia-framework', 'aurelia-postbox'], function (exports, _jquery, _aureliaFramework, _aureliaPostbox) {
   'use strict';
 
   Object.defineProperty(exports, '__esModule', {
@@ -82,24 +82,24 @@ define(['exports', 'aurelia-framework', 'aurelia-postbox'], function (exports, _
       value: function bind() {
         var _this = this;
 
-        this.element.addEventListener('dragstart', function (e) {
+        $(this.element).on('dragstart.dd', function (e) {
           _this.dragstartHandler(e);
         });
 
-        this.element.addEventListener('drag', function () {
+        $(this.element).on('drag.dd', function () {
           _this.dragHandler();
         });
 
-        this.element.addEventListener('dragend', function () {
+        $(this.element).on('dragend.dd', function () {
           _this.dragendHandler();
         });
       }
     }, {
       key: 'unbind',
       value: function unbind() {
-        this.element.removeEventListener('dragstart');
-        this.element.removeEventListener('drag');
-        this.element.removeEventListener('dragend');
+        $(this.element).off('dragstart.dd');
+        $(this.element).off('drag.dd');
+        $(this.element).off('dragend.dd');
       }
     }], null, _instanceInitializers);
 

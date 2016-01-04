@@ -1,4 +1,4 @@
-System.register(['aurelia-framework', 'aurelia-postbox'], function (_export) {
+System.register(['jquery', 'aurelia-framework', 'aurelia-postbox'], function (_export) {
   'use strict';
 
   var inject, bindable, customAttribute, PostBox, Drag;
@@ -10,7 +10,7 @@ System.register(['aurelia-framework', 'aurelia-postbox'], function (_export) {
   function _defineDecoratedPropertyDescriptor(target, key, descriptors) { var _descriptor = descriptors[key]; if (!_descriptor) return; var descriptor = {}; for (var _key in _descriptor) descriptor[_key] = _descriptor[_key]; descriptor.value = descriptor.initializer ? descriptor.initializer.call(target) : undefined; Object.defineProperty(target, key, descriptor); }
 
   return {
-    setters: [function (_aureliaFramework) {
+    setters: [function (_jquery) {}, function (_aureliaFramework) {
       inject = _aureliaFramework.inject;
       bindable = _aureliaFramework.bindable;
       customAttribute = _aureliaFramework.customAttribute;
@@ -89,24 +89,24 @@ System.register(['aurelia-framework', 'aurelia-postbox'], function (_export) {
           value: function bind() {
             var _this = this;
 
-            this.element.addEventListener('dragstart', function (e) {
+            $(this.element).on('dragstart.dd', function (e) {
               _this.dragstartHandler(e);
             });
 
-            this.element.addEventListener('drag', function () {
+            $(this.element).on('drag.dd', function () {
               _this.dragHandler();
             });
 
-            this.element.addEventListener('dragend', function () {
+            $(this.element).on('dragend.dd', function () {
               _this.dragendHandler();
             });
           }
         }, {
           key: 'unbind',
           value: function unbind() {
-            this.element.removeEventListener('dragstart');
-            this.element.removeEventListener('drag');
-            this.element.removeEventListener('dragend');
+            $(this.element).off('dragstart.dd');
+            $(this.element).off('drag.dd');
+            $(this.element).off('dragend.dd');
           }
         }], null, _instanceInitializers);
 

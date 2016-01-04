@@ -2,6 +2,7 @@
  * Created by ericjohnson on 12/7/15.
  */
 
+import 'jquery';
 import {inject, bindable, customAttribute} from 'aurelia-framework';
 import {PostBox} from 'aurelia-postbox';
 
@@ -20,36 +21,35 @@ export class Drop {
 
   listen() {
     // load listeners
-    this.element.addEventListener('dragenter', () => {
+    $(this.element).on('dragenter.dd', () => {
       $(this.element).addClass('drag-over');
     });
 
-    this.element.addEventListener('dragover', (e) => {
+    $(this.element).on('dragover.dd', (e) => {
       // allow drop to happen
       e.preventDefault();
     });
 
-    this.element.addEventListener('dragleave', () => {
+    $(this.element).on('dragleave.dd', () => {
       $(this.element).removeClass('drag-over');
     });
 
-    this.element.addEventListener('drop', (e) => {
-      // allow drop to happen
+    $(this.element).on('drop.dd', (e) => {
       e.preventDefault();
 
       // then handle
       $(this.element).removeClass('drag-over');
-      let data = JSON.parse(e.dataTransfer.getData('data'));
+      let data = JSON.parse(e.originalEvent.dataTransfer.getData('data'));
       this.context[this.handler](data, e, this.params);
     });
   }
 
   stopListening() {
     // remove listeners
-    this.element.removeEventListener('dragenter');
-    this.element.removeEventListener('dragover');
-    this.element.removeEventListener('dragleave');
-    this.element.removeEventListener('drop');
+    $(this.element).off('dragenter.dd');
+    $(this.element).off('dragover.dd');
+    $(this.element).off('dragleave.dd');
+    $(this.element).off('drop.dd');
   }
 
   bind(bindingContext, overrideContext) {

@@ -10,6 +10,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _defineDecoratedPropertyDescriptor(target, key, descriptors) { var _descriptor = descriptors[key]; if (!_descriptor) return; var descriptor = {}; for (var _key in _descriptor) descriptor[_key] = _descriptor[_key]; descriptor.value = descriptor.initializer ? descriptor.initializer.call(target) : undefined; Object.defineProperty(target, key, descriptor); }
 
+require('jquery');
+
 var _aureliaFramework = require('aurelia-framework');
 
 var _aureliaPostbox = require('aurelia-postbox');
@@ -85,24 +87,24 @@ var Drag = (function () {
     value: function bind() {
       var _this = this;
 
-      this.element.addEventListener('dragstart', function (e) {
+      $(this.element).on('dragstart.dd', function (e) {
         _this.dragstartHandler(e);
       });
 
-      this.element.addEventListener('drag', function () {
+      $(this.element).on('drag.dd', function () {
         _this.dragHandler();
       });
 
-      this.element.addEventListener('dragend', function () {
+      $(this.element).on('dragend.dd', function () {
         _this.dragendHandler();
       });
     }
   }, {
     key: 'unbind',
     value: function unbind() {
-      this.element.removeEventListener('dragstart');
-      this.element.removeEventListener('drag');
-      this.element.removeEventListener('dragend');
+      $(this.element).off('dragstart.dd');
+      $(this.element).off('drag.dd');
+      $(this.element).off('dragend.dd');
     }
   }], null, _instanceInitializers);
 
