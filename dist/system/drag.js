@@ -71,6 +71,7 @@ System.register(['aurelia-framework', 'aurelia-postbox'], function (_export) {
           value: function dragstartHandler(e) {
             $(this.element).addClass('dragging');
             this.pb.publish('drop-target', this.target);
+            $('body').addClass(this.target + '-target-dragging');
             e.dataTransfer.setData('data', JSON.stringify(this.data));
           }
         }, {
@@ -80,6 +81,7 @@ System.register(['aurelia-framework', 'aurelia-postbox'], function (_export) {
           key: 'dragendHandler',
           value: function dragendHandler() {
             $(this.element).removeClass('dragging');
+            $('body').removeClass(this.target + '-target-dragging');
             this.pb.publish('drop-target', null);
           }
         }, {

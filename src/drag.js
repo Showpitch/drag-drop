@@ -31,6 +31,7 @@ export class Drag {
   dragstartHandler(e) {
     $(this.element).addClass('dragging');
     this.pb.publish('drop-target', this.target);
+    $('body').addClass(`${this.target}-target-dragging`);
     e.dataTransfer.setData('data', JSON.stringify(this.data));
   }
 
@@ -40,6 +41,7 @@ export class Drag {
 
   dragendHandler() {
     $(this.element).removeClass('dragging');
+    $('body').removeClass(`${this.target}-target-dragging`);
     this.pb.publish('drop-target', null);
   }
 

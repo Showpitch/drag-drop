@@ -67,6 +67,7 @@ var Drag = (function () {
     value: function dragstartHandler(e) {
       $(this.element).addClass('dragging');
       this.pb.publish('drop-target', this.target);
+      $('body').addClass(this.target + '-target-dragging');
       e.dataTransfer.setData('data', JSON.stringify(this.data));
     }
   }, {
@@ -76,6 +77,7 @@ var Drag = (function () {
     key: 'dragendHandler',
     value: function dragendHandler() {
       $(this.element).removeClass('dragging');
+      $('body').removeClass(this.target + '-target-dragging');
       this.pb.publish('drop-target', null);
     }
   }, {
