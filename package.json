@@ -1,6 +1,6 @@
 {
-  "name": "aurelia-drag-drop",
-  "version": "0.0.9",
+  "name": "drag-drop",
+  "version": "0.0.10",
   "description": "A drag and drop plugin for aurelia.",
   "keywords": [
     "aurelia",
@@ -8,16 +8,16 @@
     "drag",
     "drop"
   ],
-  "homepage": "http://github.com/digitzfone/aurelia-drag-drop",
+  "homepage": "https://github.com/Showpitch/drag-drop",
   "bugs": {
-    "url": "https://github.com/digitzfone/aurelia-drag-drop/issues"
+    "url": "https://github.com/Showpitch/drag-drop/issues"
   },
   "license": "CC0-1.0",
   "author": "Eric Johnson ericj@enjodesign.com",
   "main": "dist/commonjs/index.js",
   "repository": {
     "type": "git",
-    "url": "http://github.com/digitzfone/aurelia-drag-drop"
+    "url": "https://github.com/Showpitch/drag-drop"
   },
   "devDependencies": {
     "aurelia-tools": "^0.1.3",
@@ -50,7 +50,7 @@
     },
     "dependencies": {
       "aurelia-framework": "npm:aurelia-framework@^1.0.0-beta.1.0.3",
-      "aurelia-postbox": "github:digitzfone/aurelia-post-box@^0.0.15",
+      "aurelia-postbox": "github:Showpitch/postbox@^0.0.16",
       "jquery": "npm:jquery@^2.1.4"
     },
     "devDependencies": {
