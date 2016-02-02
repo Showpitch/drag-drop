@@ -1,15 +1,12 @@
 /**
  * Created by ericjohnson on 12/7/15.
  */
-
 import 'jquery';
 import {inject, bindable, customAttribute} from 'aurelia-framework';
-import {PostBox} from 'aurelia-postbox';
-
+import {PostBox} from 'postbox';
 @customAttribute('drop')
 @inject(Element, PostBox)
 export class Drop {
-
   @bindable target = 'enable';
   @bindable handler;
   @bindable params = {};
@@ -24,19 +21,15 @@ export class Drop {
     $(this.element).on('dragenter.dd', () => {
       $(this.element).addClass('drag-over');
     });
-
     $(this.element).on('dragover.dd', (e) => {
       // allow drop to happen
       e.preventDefault();
     });
-
     $(this.element).on('dragleave.dd', () => {
       $(this.element).removeClass('drag-over');
     });
-
     $(this.element).on('drop.dd', (e) => {
       e.preventDefault();
-
       // then handle
       $(this.element).removeClass('drag-over');
       let data = JSON.parse(e.originalEvent.dataTransfer.getData('data'));
@@ -55,7 +48,6 @@ export class Drop {
   bind(bindingContext, overrideContext) {
     // set context
     this.context = typeof(bindingContext[this.handler]) === 'function' ? bindingContext : overrideContext.parentOverrideContext.bindingContext;
-
     // this creates a pb listener to get target type for dropping
     this.pb.subscribe('drop-target', payload => {
       if (payload === this.target) {

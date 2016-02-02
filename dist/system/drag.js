@@ -1,4 +1,4 @@
-System.register(['jquery', 'aurelia-framework', 'aurelia-postbox'], function (_export) {
+System.register(['jquery', 'aurelia-framework', 'postbox'], function (_export) {
   'use strict';
 
   var inject, bindable, customAttribute, PostBox, Drag;
@@ -14,8 +14,8 @@ System.register(['jquery', 'aurelia-framework', 'aurelia-postbox'], function (_e
       inject = _aureliaFramework.inject;
       bindable = _aureliaFramework.bindable;
       customAttribute = _aureliaFramework.customAttribute;
-    }, function (_aureliaPostbox) {
-      PostBox = _aureliaPostbox.PostBox;
+    }, function (_postbox) {
+      PostBox = _postbox.PostBox;
     }],
     execute: function () {
       Drag = (function () {
@@ -55,7 +55,6 @@ System.register(['jquery', 'aurelia-framework', 'aurelia-postbox'], function (_e
           _defineDecoratedPropertyDescriptor(this, 'dropClass', _instanceInitializers);
 
           var i = undefined;
-
           this.element = element;
           this.pb = postBox;
 
@@ -92,11 +91,9 @@ System.register(['jquery', 'aurelia-framework', 'aurelia-postbox'], function (_e
             $(this.element).on('dragstart.dd', function (e) {
               _this.dragstartHandler(e);
             });
-
             $(this.element).on('drag.dd', function () {
               _this.dragHandler();
             });
-
             $(this.element).on('dragend.dd', function () {
               _this.dragendHandler();
             });

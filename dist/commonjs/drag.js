@@ -14,7 +14,7 @@ require('jquery');
 
 var _aureliaFramework = require('aurelia-framework');
 
-var _aureliaPostbox = require('aurelia-postbox');
+var _postbox = require('postbox');
 
 var Drag = (function () {
   var _instanceInitializers = {};
@@ -53,7 +53,6 @@ var Drag = (function () {
     _defineDecoratedPropertyDescriptor(this, 'dropClass', _instanceInitializers);
 
     var i = undefined;
-
     this.element = element;
     this.pb = postBox;
 
@@ -90,11 +89,9 @@ var Drag = (function () {
       $(this.element).on('dragstart.dd', function (e) {
         _this.dragstartHandler(e);
       });
-
       $(this.element).on('drag.dd', function () {
         _this.dragHandler();
       });
-
       $(this.element).on('dragend.dd', function () {
         _this.dragendHandler();
       });
@@ -109,7 +106,7 @@ var Drag = (function () {
   }], null, _instanceInitializers);
 
   var _Drag = Drag;
-  Drag = (0, _aureliaFramework.inject)(Element, _aureliaPostbox.PostBox)(Drag) || Drag;
+  Drag = (0, _aureliaFramework.inject)(Element, _postbox.PostBox)(Drag) || Drag;
   Drag = (0, _aureliaFramework.customAttribute)('drag')(Drag) || Drag;
   return Drag;
 })();

@@ -1,28 +1,22 @@
 /**
  * Created by ericjohnson on 12/7/15.
  */
-
 import 'jquery';
 import {inject, bindable, customAttribute} from 'aurelia-framework';
-import {PostBox} from 'aurelia-postbox';
-
+import {PostBox} from 'postbox';
 @customAttribute('drag')
 @inject(Element, PostBox)
 export class Drag {
-
   @bindable target = 'enable';
   @bindable data = {};
   @bindable dropClass = {};
 
   constructor(element, postBox) {
     let i;
-
     this.element = element;
     this.pb = postBox;
-
     // set element to draggable
     this.element.draggable = true;
-
     // set inner element dragability to false so that only the drag elements gets pulled over
     for (i = 0; i < this.element.children.length; i++) {
       this.element.children[i].draggable = false;
@@ -50,11 +44,9 @@ export class Drag {
     $(this.element).on('dragstart.dd', (e) => {
       this.dragstartHandler(e);
     });
-
     $(this.element).on('drag.dd', () => {
       this.dragHandler();
     });
-
     $(this.element).on('dragend.dd', () => {
       this.dragendHandler();
     });
@@ -66,6 +58,4 @@ export class Drag {
     $(this.element).off('drag.dd');
     $(this.element).off('dragend.dd');
   }
-
-
 }

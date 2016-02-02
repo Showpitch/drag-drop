@@ -14,7 +14,7 @@ require('jquery');
 
 var _aureliaFramework = require('aurelia-framework');
 
-var _aureliaPostbox = require('aurelia-postbox');
+var _postbox = require('postbox');
 
 var Drop = (function () {
   var _instanceInitializers = {};
@@ -62,15 +62,12 @@ var Drop = (function () {
       $(this.element).on('dragenter.dd', function () {
         $(_this.element).addClass('drag-over');
       });
-
       $(this.element).on('dragover.dd', function (e) {
         e.preventDefault();
       });
-
       $(this.element).on('dragleave.dd', function () {
         $(_this.element).removeClass('drag-over');
       });
-
       $(this.element).on('drop.dd', function (e) {
         e.preventDefault();
 
@@ -110,7 +107,7 @@ var Drop = (function () {
   }], null, _instanceInitializers);
 
   var _Drop = Drop;
-  Drop = (0, _aureliaFramework.inject)(Element, _aureliaPostbox.PostBox)(Drop) || Drop;
+  Drop = (0, _aureliaFramework.inject)(Element, _postbox.PostBox)(Drop) || Drop;
   Drop = (0, _aureliaFramework.customAttribute)('drop')(Drop) || Drop;
   return Drop;
 })();
