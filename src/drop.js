@@ -52,8 +52,16 @@ export class Drop {
     this.pb.subscribe('drop-target', payload => {
       if (payload === this.target) {
         this.listen();
+        let i;
+        for (i = 0; i < this.element.children.length; i++) {
+          $(this.element.children[i]).css('pointer-events', 'none');
+        }
       } else {
         this.stopListening();
+        let i;
+        for (i = 0; i < this.element.children.length; i++) {
+          $(this.element.children[i]).css('pointer-events', 'inherit');
+        }
       }
     });
   }

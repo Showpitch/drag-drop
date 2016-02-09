@@ -94,8 +94,16 @@ var Drop = (function () {
       this.pb.subscribe('drop-target', function (payload) {
         if (payload === _this2.target) {
           _this2.listen();
+          var i = undefined;
+          for (i = 0; i < _this2.element.children.length; i++) {
+            $(_this2.element.children[i]).css('pointer-events', 'none');
+          }
         } else {
           _this2.stopListening();
+          var i = undefined;
+          for (i = 0; i < _this2.element.children.length; i++) {
+            $(_this2.element.children[i]).css('pointer-events', 'inherit');
+          }
         }
       });
     }
