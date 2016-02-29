@@ -1,6 +1,6 @@
 {
   "name": "drag-drop",
-  "version": "0.0.19",
+  "version": "0.1.0",
   "description": "A drag and drop plugin for aurelia.",
   "keywords": [
     "aurelia",
@@ -52,7 +52,8 @@
     "dependencies": {
       "aurelia-framework": "npm:aurelia-framework@^1.0.0-beta.1.0.3",
       "jquery": "npm:jquery@^2.1.4",
-      "postbox": "github:Showpitch/postbox@^0.0.19"
+      "postbox": "github:Showpitch/postbox@^0.1.1",
+      "storage": "github:Showpitch/storage@^0.1.1"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
