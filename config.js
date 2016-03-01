@@ -18,9 +18,9 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.8.35",
     "core-js": "npm:core-js@1.2.6",
     "jquery": "npm:jquery@2.2.1",
-    "postbox": "github:Showpitch/postbox@0.1.3",
+    "postbox": "github:Showpitch/postbox@0.1.4",
     "storage": "github:Showpitch/storage@0.1.2",
-    "github:Showpitch/postbox@0.1.3": {
+    "github:Showpitch/postbox@0.1.4": {
       "aurelia-event-aggregator": "npm:aurelia-event-aggregator@1.0.0-beta.1.1.1",
       "storage": "github:Showpitch/storage@0.1.2"
     },
