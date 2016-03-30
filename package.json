@@ -1,6 +1,6 @@
 {
   "name": "drag-drop",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A drag and drop plugin for aurelia.",
   "keywords": [
     "aurelia",
@@ -60,5 +60,11 @@
       "babel-runtime": "npm:babel-runtime@^5.8.24",
       "core-js": "npm:core-js@^1.1.4"
     }
+  },
+  "dependencies": {
+    "aurelia-framework": "^1.0.0-beta.1.2.1",
+    "jquery": "^2.2.2",
+    "postbox": "git+https://github.com/Showpitch/postbox.git",
+    "storage": "git+https://github.com/Showpitch/storage.git"
   }
 }
